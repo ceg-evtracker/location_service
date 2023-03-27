@@ -1,7 +1,7 @@
 const express = require('express');
 const { Server } = require('ws');
 
-const PORT = process.env.PORT || 3000; //port for https
+const PORT = process.env.PORT || 8080; //port for https
 
 const clients = new Set();
 
