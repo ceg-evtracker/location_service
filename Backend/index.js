@@ -1,7 +1,7 @@
 const express = require('express');
 const { Server } = require('ws');
 
-const PORT = process.env.PORT || 8080; //port for https
+const PORT = process.env.PORT || 3000; //port for https
 
 const clients = new Set();
 
@@ -17,13 +17,20 @@ wss.on('connection', function(ws, req) {
     console.log('Client Connected');
     
     
+    
     ws.on('message', message => {
+        const res_Data = JSON.parse(message);
+
+        console.log('Name:',res_Data.sender);
+        console.log('latitude:',res_Data.latitude);
+        console.log('longitude:',res_Data.longitude);
+
+        // var dataString = message.toString();
         // console.log(message);
-        var dataString = message.toString();
-        // console.log(message);
-        console.log(dataString);
+        // console.log(dataString);
         wss.clients.forEach((client) => {
-                if(message.toString().startsWith("H1:")){
+                // console.log(client);
+                if(res_Data.sender == "H1_DRIVER"){
                 client.send(message.toString());
                 }
             
