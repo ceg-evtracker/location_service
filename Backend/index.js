@@ -30,9 +30,11 @@ wss.on('connection', function(ws, req) {
         // console.log(dataString);
         wss.clients.forEach((client) => {
                 // console.log(client);
-                if(res_Data.sender == "H1_DRIVER"){
-                client.send(message.toString());
-                }
+                
+                // client.send(message);
+                resJSON = JSON.stringify(res_Data);
+                client.send(resJSON);
+                
             
         })
     })
